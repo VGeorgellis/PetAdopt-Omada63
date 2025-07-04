@@ -298,6 +298,12 @@ public class PetController {
         model.addAttribute("pets", petRepository.findPetsForAdoption());
         model.addAttribute("likedPets", petRepository.findLikedAnimals(customer));
         return "customers/petsForAdoption";
+    
+        List<Pet> pets = petRepository.findPetsWaitingForAdoption();
+        if (pets == null) {
+        pets = List.of();
+        }
+        model.addAttribute("pets", pets);
     }
 
     @GetMapping("/pet/liked/{id}")
